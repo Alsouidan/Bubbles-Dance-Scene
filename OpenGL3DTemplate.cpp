@@ -45,6 +45,9 @@ bool rightFlag = true;
 float hand2 = 0;
 float bubbleY = 0;
 bool fly = true;
+bool cameraFlag = true;
+
+
 
 
 
@@ -59,71 +62,186 @@ void initGL() {
 }
 void Keyboard(unsigned char key, int x, int y) {
 	switch (key) {
-	case't':eyeY = 1.5;
-		eyeZ = -4.5;
-		fovy = 47;
-		centerY = -390.5;
+	case't':eyeY = 0;
+		eyeZ = 0;
+		fovy = 45;
+		centerY = 0;
+		eyeZ = 0;centerX = 0;eyeX = 0;eyeY = 0;
+		if (cameraFlag) {
+			eyeY = 1.5;
+			eyeZ = -4.5;
+			fovy = 47;
+			centerY = -390.5;
+			cameraFlag = !cameraFlag;
+
+		}
+		else {
+			eyeZ = -5.4;
+			centerX = 1103;
+			fovy = -239;
+			eyeX = -1.75;
+			eyeY = 0;
+			cameraFlag = !cameraFlag;
+		}
 		break;
-	case 'w':eyeY += 0.05;break;
-	case 's':eyeY -= 0.05;break;
+	case 'w':eyeX += 0.05;break;
+	case 's':eyeX -= 0.05;break;
+	case'z':eyeY += 0.05;break;
+	case 'm':centerX += 10;break;
+	case 'n':centerX -= 10;break;
+	case'c':eyeY -= 0.05;break;
 	case '=': //zoom
 		fovy += 2;
 		break;
 	case'-':fovy -= 2;
 		break;
 	case 'e': //normal
-		centerY += 0.5;
+		centerX += 1;
 		break;
 	case 'q': //up
-		centerY -= 0.5;
+		centerX -= 1;
 		//centerZ++;
 		//centerY++;
 		break;
 	case 'a':eyeZ += 0.3;break;
 	case 'd':eyeZ -= 0.3;break;
-	case 'l':eyeY =0;
+	case 'l':eyeY = 0;
 		eyeZ = 0;
 		fovy = 45;
 		centerY = 0;
+		eyeZ = 0;centerX = 0;eyeX = 0;eyeY = 0;
 		break;
-	case'r':slowFactor = (slowFactor==4)?1:4;break;
+	case'r':slowFactor = (slowFactor == 4) ? 1 : 4;break;
 
 	}
 	glutPostRedisplay();
 }
+
+void drawBricks() {
+	glPushMatrix();
+	glColor3f(b2, r1, g3);
+	glTranslated(0, 0, 1);
+	glScaled(0.5, 0.5, 0.1);
+	glutSolidCube(1);
+	glTranslated(2, 1, 0);
+	glColor3f(b3, r1, g5);
+	glutSolidCube(1);
+	glTranslated(-4, -2, 0);
+	glColor3f(b4, r2, g1);
+	glutSolidCube(1);
+	glColor3f(b2, r3, g1);
+	glTranslated(0, 2, 0);
+	glutSolidCube(1);
+	glTranslated(4, -2, 0);
+	glColor3f(b5, r5, g4);
+	glutSolidCube(1);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(-0.75, 0, 2);
+	glRotated(-90, 0, 1, 0);
+	glScaled(0.5, 0.9, 1);
+	glColor3f(b1, r1, g1);
+	glTranslated(0, 0, 1);
+	glScaled(0.5, 0.5, 0.1);
+	glutSolidCube(1);
+	glTranslated(2, 1, 0);
+	glColor3f(b2, r2, g2);
+	glutSolidCube(1);
+	glTranslated(-4, -2, 0);
+	glColor3f(b3, r3, g3);
+	glutSolidCube(1);
+	glColor3f(b4, r4, g4);
+	glTranslated(0, 2, 0);
+	glutSolidCube(1);
+	glTranslated(4, -2, 0);
+	glColor3f(b5, r5, g4);
+	glutSolidCube(1);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0.75, 0, 2);
+	glRotated(-270, 0, 1, 0);
+	glScaled(0.5, 0.9, 1);
+	glColor3f(b1, r1, g1);
+	glTranslated(0, 0, 1);
+	glScaled(0.5, 0.5, 0.1);
+	glutSolidCube(1);
+	glTranslated(2, 1, 0);
+	glColor3f(b2, r2, g2);
+	glutSolidCube(1);
+	glTranslated(-4, -2, 0);
+	glColor3f(b3, r3, g3);
+	glutSolidCube(1);
+	glColor3f(b4, r4, g4);
+	glTranslated(0, 2, 0);
+	glutSolidCube(1);
+	glTranslated(4, -2, 0);
+	glColor3f(b5, r5, g4);
+	glutSolidCube(1);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0, -0.5, 1.9);
+	glRotated(90, 1, 0, 0);
+	//glScaled(0.5, 0.9, 1);
+	glColor3f(b1, r1, g1);
+	glTranslated(0, 0, 1);
+	glScaled(0.5, 0.5, 0.1);
+	glutSolidCube(1);
+	glTranslated(2, 1, 0);
+	glColor3f(b2, r2, g2);
+	glutSolidCube(1);
+	glTranslated(-4, -2, 0);
+	glColor3f(b3, r3, g3);
+	glutSolidCube(1);
+	glColor3f(b4, r4, g4);
+	glTranslated(0, 2, 0);
+	glutSolidCube(1);
+	glTranslated(4, -2, 0);
+	glColor3f(b5, r5, g4);
+	glutSolidCube(1);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0, 0.5, 1.9);
+	glRotated(-90, 1, 0, 0);
+	//glScaled(0.5, 0.9, 1);
+	glColor3f(b1, r1, g1);
+	glTranslated(0, 0, 1);
+	glScaled(0.5, 0.5, 0.1);
+	glutSolidCube(1);
+	glTranslated(2, 1, 0);
+	glColor3f(b2, r2, g2);
+	glutSolidCube(1);
+	glTranslated(-4, -2, 0);
+	glColor3f(b3, r3, g3);
+	glutSolidCube(1);
+	glColor3f(b4, r4, g4);
+	glTranslated(0, 2, 0);
+	glutSolidCube(1);
+	glTranslated(4, -2, 0);
+	glColor3f(b5, r5, g4);
+	glutSolidCube(1);
+	glPopMatrix();
+}
 void setupCamera() {
 	GLfloat aspect = (GLfloat)1000 / (GLfloat)700;
-	//glViewport(0, 0, 1000, 700);
-
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(fovy, aspect, znear, 100);
-
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(0, eyeY, eyeZ, centerX, centerY, centerZ, 0, 1, 0);
-}
-
-void setupLights() {
-	GLfloat ambient[] = { 0.7f, 0.7f, 0.7, 1.0f };
-	GLfloat diffuse[] = { 0.6f, 0.6f, 0.6, 1.0f };
-	GLfloat specular[] = { 1.0f, 1.0f, 1.0, 1.0f };
-	GLfloat shininess[] = { 50 };
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
-	glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
-	GLfloat lightIntensity[] = { 0.7f, 0.7f, 1, 1.0f };
-	GLfloat lightPosition[] = { -7.0f, 6.0f, 3.0f, 0.0f };
-	glLightfv(GL_LIGHT0, GL_POSITION, lightIntensity);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightIntensity);
+	gluLookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, 0, 1, 0);
 }
 
 void display() {
 	//setupLights();
 	setupCamera();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glTranslatef(0, 0.0f, -6.0f);
+	glTranslatef(0, 0.0f, -7.0f);
+	drawBricks();
+	glTranslated(0, 0, 1);
 	//room
 	glPushMatrix();
 	glScaled(3.5, 3, 3.5);
@@ -167,13 +285,13 @@ void display() {
 	glPopMatrix();
 
 	//bubblezzzzzzzz
-	glTranslated(bubbleX, -0.75+bubbleY, 0.75);
+	glTranslated(bubbleX, -0.75 + bubbleY, 0.75);
 	glScaled(0.3, 0.3, 0.3);
 
 	//head
 	glPushMatrix();
 	glRotated(rotateHead, 0, 1, 0);
-	glTranslated(headX,headY,0);
+	glTranslated(headX, headY, 0);
 	//hair
 	glPushMatrix();
 	glColor3f(0.8, 0.7, 0);
@@ -257,7 +375,7 @@ void display() {
 	glPushMatrix();
 	glTranslated(-0.8, -1.3, 0);
 	glRotated(-40, 0, 0, 1);
-	glRotated(-hands+hand2, 0, 0, 1);
+	glRotated(-hands + hand2, 0, 0, 1);
 	glColor3f(1, 0.8, 0.64);
 	glScaled(0.2, 0.5, 0.2);
 	glutSolidSphere(1, 150, 50);
@@ -296,21 +414,22 @@ void timer(int value) {
 }
 
 void dance(int value) {
-	if (counter % 40 == 0) { flag = (flag==2)?0:flag+1; 
-	 rotateHead = 0;
-	 hands = 0;
-	 headX = 0;
-	 headY = 0;
-	 bubbleX = 0;
-	 rightLeg = 0;
-	 leftLeg = 0;
-	 rightFlag = true;
-	 rotation = 0;
-	 hand2 = 0;
-	 bubbleY = 0;
-	 fly = true;
+	if (counter % 40 == 0) {
+		flag = (flag == 2) ? 0 : flag + 1;
+		rotateHead = 0;
+		hands = 0;
+		headX = 0;
+		headY = 0;
+		bubbleX = 0;
+		rightLeg = 0;
+		leftLeg = 0;
+		rightFlag = true;
+		rotation = 0;
+		hand2 = 0;
+		bubbleY = 0;
+		fly = true;
 	}
-	if (flag==0) {
+	if (flag == 0) {
 		if (rotateHead >= 0) {
 			rotateHead = -45;
 			hands = 60;
@@ -330,21 +449,21 @@ void dance(int value) {
 	glutTimerFunc(500 * slowFactor, dance, 0);
 }
 void danceTwo(int value) {
-	if (flag==1) {
-	counter2++;
-	if (rightFlag &&counter2 %4==0) {
-		rightLeg = 0.2;
-		leftLeg = 0;
-		rightFlag = !rightFlag;
-	}
-	else if(counter2 % 4 == 0)
-	{
-		rightLeg = 0;
-		leftLeg = 0.2;
-		rightFlag = !rightFlag;
+	if (flag == 1) {
+		counter2++;
+		if (rightFlag &&counter2 % 4 == 0) {
+			rightLeg = 0.2;
+			leftLeg = 0;
+			rightFlag = !rightFlag;
+		}
+		else if (counter2 % 4 == 0)
+		{
+			rightLeg = 0;
+			leftLeg = 0.2;
+			rightFlag = !rightFlag;
 
-	}
-	
+		}
+
 		if (headFlag) {
 			headX += 0.01;
 			headY = -0.2;
@@ -359,11 +478,10 @@ void danceTwo(int value) {
 
 
 		}
-		cout << headX << endl;
-		if (headX == 0 || headX>=0.5 ||headX<=-0.5) {
+		if (headX == 0 || headX >= 0.5 || headX <= -0.5) {
 			headFlag = !headFlag;
 		}
-		
+
 	}
 	glutPostRedisplay();
 	glutTimerFunc(50 * slowFactor, danceTwo, 0);
@@ -377,7 +495,7 @@ void dance3(int value) {
 		else {
 			bubbleY -= 0.01;
 		}
-		if (bubbleY >= 0.3 ||bubbleY<=0) {
+		if (bubbleY >= 0.3 || bubbleY <= 0) {
 			fly = !fly;
 		}
 	}
@@ -404,12 +522,11 @@ int main(int argc, char** argv) {
 	glEnable(GL_LIGHT0);
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
-	glutTimerFunc(500*slowFactor, dance, 0);
+	glutTimerFunc(500 * slowFactor, dance, 0);
 	glutTimerFunc(50 * slowFactor, danceTwo, 0);
 	glutTimerFunc(50 * slowFactor, dance3, 0);
 	glutTimerFunc(500 * slowFactor, timer, 0);
 	glShadeModel(GL_SMOOTH);
-
 	glutMainLoop();
 	return 0;
 }

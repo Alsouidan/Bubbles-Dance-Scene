@@ -1,5 +1,3 @@
 ﻿  OpenGL3DTemplate.cpp
-e:\guc\semester 7\graphics\opengl3d\opengl3dtemplate\opengl3dtemplate.cpp(108): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-e:\guc\semester 7\graphics\opengl3d\opengl3dtemplate\opengl3dtemplate.cpp(109): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
 OpenGL3DTemplate.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
   OpenGL3DTemplate.vcxproj -> E:\GUC\Semester 7\Graphics\OpenGL3D\OpenGL3DTemplate\Debug\OpenGL3DTemplate.exe
